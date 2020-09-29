@@ -18,6 +18,12 @@ MySQL 8
 cp .env.example .env - configure database access
 ```
 
+```shell script
+composer install
+npm install
+npm run production
+```
+
 #### Development
 ```shell script
 php artisan serve
