@@ -35,3 +35,10 @@ php artisan ide-helper:generate - PHPDoc generation for Laravel Facades
 php artisan ide-helper:models - PHPDocs for models
 php artisan ide-helper:meta - PhpStorm Meta file
 ```
+
+#### SLEEPINGOWL
+В AdminSectionsServiceProvider добавляем в $sections новую секцию User::class => 'App\Admin\Sections\Users', затем выполняем команду, которая генерит файл по указанному пути. Т.е. если указан класс App\Http\Admin\Roles, то для него будет создан файл app/Http/Admin/Roles.php с заранее заготовленным кодом.
+ 
+```shell script
+php artisan sleepingowl:section:generate
+```

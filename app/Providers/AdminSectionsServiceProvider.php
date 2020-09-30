@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Admin\Sections\Users;
+use App\Models\User;
 use SleepingOwl\Admin\Providers\AdminSectionsServiceProvider as ServiceProvider;
 
 class AdminSectionsServiceProvider extends ServiceProvider
@@ -11,7 +13,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
      * @var array
      */
     protected $sections = [
-        //\App\User::class => 'App\Http\Sections\Users',
+        User::class => Users::class,
     ];
 
     /**
