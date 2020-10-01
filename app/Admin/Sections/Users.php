@@ -58,8 +58,8 @@ class Users extends Section implements Initializable
     {
         $columns = [
             AdminColumn::text('id', '#')->setWidth('50px')->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::image('image', 'Image'),
-            AdminColumn::link('name', 'Name', 'created_at')
+            AdminColumn::image('preview', 'Image'),
+            AdminColumn::link('name', 'Name')
                 ->setSearchCallback(function($column, $query, $search){
                     return $query
                         ->orWhere('name', 'like', '%'.$search.'%')
@@ -71,7 +71,7 @@ class Users extends Section implements Initializable
                 })
             ,
             AdminColumn::boolean('name', 'On'),
-            AdminColumn::text('created_at', 'Created / updated', 'updated_at')
+            AdminColumn::text('created_at', 'Created / updated')
                 ->setWidth('160px')
                 ->setOrderable(function($query, $direction) {
                     $query->orderBy('updated_at', $direction);
