@@ -127,6 +127,10 @@ class Users extends Section implements Initializable
                 AdminFormElement::text('id', 'ID')->setReadonly(true),
                 AdminFormElement::html('last AdminFormElement without comma')
             ], 'col-xs-12 col-sm-6 col-md-8 col-lg-8'),
+            AdminFormElement::columns()->addColumn([
+               AdminFormElement::image('image', 'User image'),
+            ], 'col-xs-12 col-sm-6 col-md-8 col-lg-8'),
+
         ]);
 
         $form->getButtons()->setButtons([
@@ -145,21 +149,5 @@ class Users extends Section implements Initializable
     public function onCreate($payload = [])
     {
         return $this->onEdit(null, $payload);
-    }
-
-    /**
-     * @return bool
-     */
-    public function isDeletable(Model $model)
-    {
-        return true;
-    }
-
-    /**
-     * @return void
-     */
-    public function onRestore($id)
-    {
-        // remove if unused
     }
 }

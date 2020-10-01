@@ -20,7 +20,9 @@ cp .env.example .env - configure database access
 
 ```shell script
 composer install
+php artisan key:generate
 npm install
+npm run dev
 npm run production
 ```
 
@@ -34,6 +36,7 @@ php artisan serve
 php artisan ide-helper:generate - PHPDoc generation for Laravel Facades
 php artisan ide-helper:models - PHPDocs for models
 php artisan ide-helper:meta - PhpStorm Meta file
+php artisan sleepingowl:ide:generate - PHPDoc generation for SleepingOwlAdmin Facades
 ```
 
 #### SLEEPINGOWL
