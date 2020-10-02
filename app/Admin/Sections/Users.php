@@ -130,7 +130,7 @@ class Users extends Section implements Initializable
             ], 'col-xs-12 col-sm-6 col-md-8 col-lg-8'),
             AdminFormElement::columns()->addColumn([
                AdminFormElement::image('image', 'User image'),
-            ], 'col-xs-12 col-sm-6 col-md-8 col-lg-8'),
+            ], 'col-xs-12 col-sm-6 col-md-6 col-lg-2'),
 
         ]);
 

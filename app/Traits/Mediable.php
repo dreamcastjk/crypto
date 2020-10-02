@@ -73,6 +73,10 @@ trait Mediable
      */
     private function createSingleMedia($file)
     {
+        if (!$file) {
+            return $this->clearMediaCollection(static::$defaultCollection);
+        }
+
         $this->clearMediaCollection(static::$defaultCollection);
         return $this->addMedia($file)->toMediaCollection(static::$defaultCollection);
     }
