@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Traits\Mediable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * App\Models\Product
@@ -32,9 +35,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\AdditionalProductInfo|null $info
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereInStoreCount($value)
  */
-class Product extends Model
+class Product extends Model implements HasMedia
 {
     use HasFactory;
+    use InteractsWithMedia;
+    use Mediable {
+        Mediable::registerMediaConversions insteadof InteractsWithMedia;
+    }
 
     protected $guarded = ['id'];
 

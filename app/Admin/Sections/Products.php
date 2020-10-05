@@ -88,13 +88,13 @@ class Products extends Section implements Initializable
 
         $display->setColumnFilters([
             AdminColumnFilter::select()
-                ->setModelForOptions(\App\Models\Product::class, 'name')
+                ->setModelForOptions(\App\Models\Product::class, 'title')
                 ->setLoadOptionsQueryPreparer(function($element, $query) {
                     return $query;
                 })
-                ->setDisplay('name')
-                ->setColumnName('name')
-                ->setPlaceholder('All names')
+                ->setDisplay('title')
+                ->setColumnName('title')
+                ->setPlaceholder('Все названия')
             ,
         ]);
         $display->getColumnFilters()->setPlacement('card.heading');
@@ -129,6 +129,8 @@ class Products extends Section implements Initializable
                        ->addColumn([AdminFormElement::number('price', 'Цена')]),
                    AdminFormElement::columns()
                        ->addColumn([AdminFormElement::number('in_store_count', 'Кол-во на складе')->setDefaultValue(0)]),
+                   AdminFormElement::columns()
+                       ->addColumn([AdminFormElement::images('image', 'Изображения')->required()]),
                ])
            )->setLabel('Товар');
 
