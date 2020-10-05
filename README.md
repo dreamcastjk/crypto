@@ -25,6 +25,7 @@ cp .env.example .env - configure database access
 
 ```shell script
 composer install
+php artisan migrate || php artisan migrate:fresh --seed 
 php artisan key:generate
 npm install
 npm run dev
