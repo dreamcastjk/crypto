@@ -34,6 +34,10 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @mixin \Eloquent
  * @property-read \App\Models\AdditionalProductInfo|null $info
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereInStoreCount($value)
+ * @property mixed $image
+ * @property-read mixed $preview
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
  */
 class Product extends Model implements HasMedia
 {
@@ -44,6 +48,10 @@ class Product extends Model implements HasMedia
     }
 
     protected $guarded = ['id'];
+
+    protected $hidden = ['created_at', 'updated_at'];
+
+    protected $perPage = 6;
 
     /**
      * additional info about product

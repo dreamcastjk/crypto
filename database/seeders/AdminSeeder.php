@@ -6,6 +6,7 @@ use App\Models\User;
 use Hash;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
+use Faker\Generator as Faker;
 
 class AdminSeeder extends Seeder
 {
@@ -21,6 +22,7 @@ class AdminSeeder extends Seeder
             'email' => 'admin@admin.com',
             'email_verified_at' => Carbon::now(config('app.timezone')),
             'password' => Hash::make('admin123'),
+            'image' => 'https://via.placeholder.com/500'
         ]);
 
         $user->assignRole(\App\Models\Role::ROLE_ADMIN);

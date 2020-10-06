@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Product;
 use Carbon\Carbon;
+use Closure;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductFactory extends Factory
@@ -31,6 +32,13 @@ class ProductFactory extends Factory
             'in_store_count' => $this->faker->randomNumber(3),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
+            'image' => [
+                $this->faker->imageUrl(),
+                $this->faker->imageUrl(),
+                $this->faker->imageUrl(),
+                $this->faker->imageUrl(),
+                $this->faker->imageUrl(),
+            ]
         ];
     }
 }

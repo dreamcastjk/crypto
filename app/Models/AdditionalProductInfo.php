@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|AdditionalProductInfo whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AdditionalProductInfo whereWarranty($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Product $product
  */
 class AdditionalProductInfo extends Model
 {
