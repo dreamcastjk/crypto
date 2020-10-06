@@ -114,4 +114,14 @@ class User extends Authenticatable implements HasMedia
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Additional for user, messengers etc.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function info()
+    {
+        return $this->hasOne(UserInfo::class);
+    }
 }
