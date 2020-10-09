@@ -16,13 +16,25 @@ class CreateUserInfosTable extends Migration
         Schema::create('user_infos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('phone');
-            $table->string('telegram');
-            $table->string('facebook');
-            $table->string('vk');
-            $table->string('skype');
-            $table->string('whatsup');
+            $table->string('phone', 50)->unique();
+            $table->string('telegram', 20)->unique();
+            $table->string('facebook', 50)->unique();
+            $table->string('vk', 100)->unique();
+            $table->string('skype', 20)->unique();
+            $table->string('whatsup', 20)->unique();
             $table->timestamps();
+
+            $table->unique([
+                'user_id',
+                'phone',
+                'telegram',
+                'facebook',
+                'vk',
+                'skype',
+                'whatsup'
+            ],
+                'unique-user_id-socials'
+            );
         });
     }
 

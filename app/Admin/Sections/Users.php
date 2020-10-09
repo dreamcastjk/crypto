@@ -41,6 +41,8 @@ class Users extends Section implements Initializable
      */
     protected $alias;
 
+    const NOT_SPECIFIED = 'Не указано';
+
     /**
      * Initialize class.
      */
@@ -113,24 +115,58 @@ class Users extends Section implements Initializable
      */
     public function onEdit($id = null, $payload = [])
     {
+        $isReadOnly = function () {
+            if ($this->getCreateUrl() == request()->url()) {
+                return false;
+            }
+
+            return true;
+        };
+
         $form = AdminForm::card()->addBody([
             AdminFormElement::columns()->addColumn([
                 AdminFormElement::text('name', 'Name')
                     ->required()
                 ,
-                AdminFormElement::html('<hr>'),
                 AdminFormElement::datetime('created_at')
                     ->setVisible(true)
                     ->setReadonly(false)
                 ,
-                AdminFormElement::html('last AdminFormElement without comma')
             ], 'col-xs-12 col-sm-6 col-md-4 col-lg-4')->addColumn([
                 AdminFormElement::text('id', 'ID')->setReadonly(true),
-                AdminFormElement::html('last AdminFormElement without comma')
             ], 'col-xs-12 col-sm-6 col-md-8 col-lg-8'),
             AdminFormElement::columns()->addColumn([
                AdminFormElement::image('image', 'User image'),
             ], 'col-xs-12 col-sm-6 col-md-6 col-lg-2'),
+            AdminFormElement::columns()
+                ->addColumn([
+                    AdminFormElement::text('info.phone', 'Номер телефона')
+                        ->setReadonly($isReadOnly())
+                        ->setDefaultValue(static::NOT_SPECIFIED),
+                ])->addColumn([
+                    AdminFormElement::text('info.telegram', "Телеграм")
+                        ->setReadonly($isReadOnly())
+                        ->setDefaultValue(static::NOT_SPECIFIED)
+                ])->addColumn([
+                    AdminFormElement::text('info.facebook', "Facebook")
+                        ->setReadonly($isReadOnly())
+                        ->setDefaultValue(static::NOT_SPECIFIED)
+                ]),
+            AdminFormElement::columns()
+                ->addColumn([
+                    AdminFormElement::text('info.vk', 'Вконтакте')
+                        ->setReadonly($isReadOnly())
+                        ->setDefaultValue(static::NOT_SPECIFIED)
+                ])->addColumn([
+                    AdminFormElement::text('info.skype', 'Skype')
+                        ->setReadonly($isReadOnly())
+                        ->setDefaultValue(static::NOT_SPECIFIED)
+                ])->addColumn([
+                    AdminFormElement::text('info.whatsup', 'WhatsUp')
+                        ->setReadonly($isReadOnly())
+                        ->setDefaultValue(static::NOT_SPECIFIED)
+                ])
+
 
         ]);
 

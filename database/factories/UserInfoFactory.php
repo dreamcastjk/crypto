@@ -22,7 +22,12 @@ class UserInfoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'phone' => $this->faker->phoneNumber,
+            'telegram' => $this->faker->phoneNumber,
+            'facebook' => $this->faker->randomNumber(5),
+            'vk' => $this->faker->url,
+            'skype' => $this->faker->slug(1),
+            'whatsup' => $this->faker->phoneNumber,
         ];
     }
 }
