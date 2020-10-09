@@ -49,9 +49,11 @@ class Product extends Model implements HasMedia
 
     protected $guarded = ['id'];
 
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $hidden = ['created_at', 'updated_at', 'media'];
 
     protected $perPage = 6;
+
+    protected $appends = ['image'];
 
     /**
      * additional info about product

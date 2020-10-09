@@ -33,11 +33,8 @@ class ProductFactory extends Factory
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
             'image' => [
-                $this->faker->imageUrl(),
-                $this->faker->imageUrl(),
-                $this->faker->imageUrl(),
-                $this->faker->imageUrl(),
-                $this->faker->imageUrl(),
+                'https://via.placeholder.com/500',
+                'https://via.placeholder.com/500',
             ]
         ];
     }

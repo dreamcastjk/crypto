@@ -32,6 +32,16 @@ npm run dev
 npm run production
 ```
 
+#### Tests
+```shell script
+Создать тестовую БД
+
+cp .env.testing.example .env.testing #заполняем актуальными конфигами
+php artisan migrate:fresh --env=testing #накат миграций на тестовую БД
+php artisan key:generate --env=testing #генерация ключа приложения на тесты
+php artisan test --env=testing #запуск тестов
+```
+
 #### Development
 ```shell script
 php artisan serve
