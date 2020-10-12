@@ -20,7 +20,7 @@ class CreateUserInfosTable extends Migration
             $table->string('telegram', 20)->unique();
             $table->string('facebook', 50)->unique();
             $table->string('vk', 100)->unique();
-            $table->string('skype', 20)->unique();
+            $table->string('skype', 50)->unique();
             $table->string('whatsup', 20)->unique();
             $table->timestamps();
 
