@@ -10,6 +10,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('products')->group(function () {
     Route::get('', ProductsController::class)->name('products.index');
-    Route::get('{product:id}', [ProductsController::class, 'show'])->name('products.show');
+    Route::get('{product:slug}', [ProductsController::class, 'show'])->name('products.show');
 });
 

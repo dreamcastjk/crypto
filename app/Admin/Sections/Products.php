@@ -8,9 +8,11 @@ use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
 use Illuminate\Database\Eloquent\Model;
+use SleepingOwl\Admin\Admin;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Contracts\Initializable;
+use SleepingOwl\Admin\Facades\Meta;
 use SleepingOwl\Admin\Form\FormElements;
 use SleepingOwl\Admin\Section;
 
@@ -110,13 +112,16 @@ class Products extends Section implements Initializable
      */
     public function onEdit($id = null, $payload = [])
     {
+        Meta::addJs('admin-custom-js-1', asset('admin_resources/js/slug-generate.js'), ['admin-default']);
+
         $tabs = AdminDisplay::tabbed();
         $tabs->setTabs(function ($id) {
            $tabs = [];
            $tabs[] = AdminDisplay::tab(
                new FormElements([
                    AdminFormElement::columns()
-                       ->addColumn([AdminFormElement::text('title', 'Название')->required()]),
+                       ->addColumn([AdminFormElement::text('title', 'Название')->required()])
+                       ->addColumn([AdminFormElement::text('slug', 'Slug (для url)')->required()]),
                    AdminFormElement::columns()
                        ->addColumn([
                            AdminFormElement::number('hashrate', 'Хэшрейт')->required()
@@ -138,10 +143,10 @@ class Products extends Section implements Initializable
                new FormElements([
                    AdminFormElement::columns()
                     ->addColumn([
+                        AdminFormElement::textarea('info.warranty', 'Гарантия')->required(),
                         AdminFormElement::textarea('info.notes', 'Заметки к товару'),
                         AdminFormElement::textarea('info.overview', 'Общее описание'),
                         AdminFormElement::textarea('info.payment', 'Правила оплаты'),
-                        AdminFormElement::textarea('info.warranty', 'Гарантия')->required(),
                     ])
                ])
            )->setLabel('Дополнительная информация');

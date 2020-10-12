@@ -27,6 +27,6 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
-        return $product::with('info')->first();
+        return $product->load('info');
     }
 }

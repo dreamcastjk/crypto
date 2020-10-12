@@ -4,8 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Product;
 use Carbon\Carbon;
-use Closure;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class ProductFactory extends Factory
 {
@@ -23,8 +23,11 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $title = $this->faker->colorName;
+
         return [
-            'title' => $this->faker->colorName,
+            'title' => $title,
+            'slug' => Str::slug($title),
             'hashrate' => $this->faker->randomNumber(2),
             'hashrate_unit' => $this->faker->regexify('[a-zA-Z]{2}'),
             'weight' => $this->faker->randomNumber(2),

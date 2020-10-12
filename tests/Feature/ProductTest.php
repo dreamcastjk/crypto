@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Product;
+use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class ProductTest extends TestCase
@@ -10,14 +11,11 @@ class ProductTest extends TestCase
     public array $productJsonStructure;
 
     /**
-     * ProductTest constructor.
-     * @param string|null $name
-     * @param array $data
-     * @param string $dataName\
+     * @return void
      */
-    public function __construct(?string $name = null, array $data = [], $dataName = '')
+    protected function setUp(): void
     {
-        parent::__construct($name, $data, $dataName);
+        parent::setUp();
 
         $this->productJsonStructure = [
             'id',
@@ -43,9 +41,10 @@ class ProductTest extends TestCase
     /**
      * Успешное получение списка товаров, с пагинацией
      *
+     * @test
      * @return void
      */
-    public function testSuccessProductsIndex()
+    public function successProductsIndex()
     {
         Product::factory()->hasInfo()->create();
 
@@ -79,14 +78,28 @@ class ProductTest extends TestCase
     /**
      * Успешное получение информации о конкретном товаре
      *
+     * @test
      * @return void
      */
-    public function testSuccessProductsShow()
+    public function successProductsShow()
     {
         $product = Product::factory()->hasInfo()->create();
 
         $this->get(route('products.show', $product))
             ->assertOk()
             ->assertJsonStructure($this->productJsonStructure);
+    }
+
+    /**
+     * 404 on not found product by slug
+     *
+     * @test
+     * @return void
+     */
+    public function productNotFoundBySlug()
+    {
+        $this->get(route('products.show', 'some-not-existing-slug'))
+            ->assertNotFound()
+            ->assertStatus(Response::HTTP_NOT_FOUND);
     }
 }
