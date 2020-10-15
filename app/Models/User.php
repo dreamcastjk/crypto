@@ -83,6 +83,7 @@ class User extends Authenticatable implements HasMedia
         'name',
         'email',
         'password',
+        'api_token'
     ];
 
     /**

@@ -23,7 +23,7 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
-        $title = $this->faker->colorName;
+        $title = $this->faker->unique()->word;
 
         return [
             'title' => $title,
